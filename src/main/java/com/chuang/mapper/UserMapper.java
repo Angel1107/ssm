@@ -31,4 +31,7 @@ public interface UserMapper {
     public List<User> selectByName(String name);
     @Select("select * from userinfo where username=#{username}")
     public User selectByUname(String name);
+    
+    @Select("select * from userinfo where IsAdmin = 'Y' and id = #{id}")
+    public User selectAdmin(int id);
 }

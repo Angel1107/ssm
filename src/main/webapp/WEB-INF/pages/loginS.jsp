@@ -1,23 +1,30 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-request.setAttribute("basePath", basePath);  
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
-    
+  	<base href="<%=basePath%>">
     <title>My JSP 'loginS.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<style type="text/css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+    	function isAdmin(){
+			$.ajax({
+			url : "<%=basePath%>room/checkAdmin",
+			success : function(data) {
+			if(data==true)
+				 window.location.href ='<%=basePath%>room/tocreate';
+			else
+				alert("你没有权限去创建")				
+			}
+			});
+}
+    </script>
+<style type="text/css">
 	a{
 	font-family:楷体;
 	font-size: 26px;
@@ -56,17 +63,19 @@ request.setAttribute("basePath", basePath);
 	position: relative;
     top: 50
 	}
-	
 	</style>
-
+	
   </head>
-  
-  <body style="background-image: url(css/images/bg.jpg);background-size: cover;">
-	<a href="http://i.baidu.com/center" >	<img id = "img1" alt="tt去哪儿了" src="${basePath}${user.imgUrl}" ></a>
+ 
+  <body style="background-image: url(<%=basePath %>css/images/bg.jpg);background-size: cover;">
+	<a href="http://i.baidu.com/center" >	
+	<img id = "img1" alt="tt去哪儿了"
+				 src="<c:if test='${not empty user.imgUrl}'><%=basePath %>${user.imgUrl}</c:if><c:if test='${empty user.imgUrl}'><%=basePath %>upload/148833341950401.gif</c:if>"/></a>
     <span id="sp"><a href="https://github.com/ManChuang" >${user.username}个人中心</a></span>
    		<div id="first" align="center">
   		<a href="record/selectR.do/${user.id}">查看我预定的会议室</a><br/><br/><br/>
-  		<a href="room/tocreate">创建会议室</a>
+  		<a href="javascript:isAdmin();">创建会议室</a>
+<!--   		<a href="img/toIndex">插件集成</a> -->
   		</div>
-  </body>
+  </body> 
 </html>

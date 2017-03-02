@@ -23,4 +23,8 @@ public class UserDAO {
     public User checkName(String username) {
 		return userMapper.selectByUname(username);
 	}
+    
+    public boolean checkAdmin(User user){
+    	return userMapper.selectAdmin(user.getId())!=null?true:false;
+    }
 }

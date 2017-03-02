@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-validator.Checked=src/main/webapp/WEB-INF/web.xml,src/main/resources/spring-dao.xml,src/main/resources/spring-web.xml
+validator.Checked=src/main/resources/spring-service.xml,src/main/webapp/WEB-INF/web.xml,src/main/resources/spring-dao.xml,src/main/webapp/WEB-INF/pages/register.jsp,src/main/resources/spring-web.xml
 validator.Unchecked=

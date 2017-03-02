@@ -2,8 +2,6 @@ package com.chuang.web;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +24,7 @@ public class RecordController {
 			System.out.println(rlst);
 			if(id!=0){
 	            m.addObject("rlst", rlst);
-	            m.setViewName("pages/showRecord");
+	            m.setViewName("pages/showRecord.jsp");
 	        }
 			return m;
 		}

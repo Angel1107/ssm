@@ -2,6 +2,7 @@ package com.chuang.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,17 +18,22 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chuang.model.LoginLog;
 import com.chuang.model.User;
+import com.chuang.service.LoginLogService;
 import com.chuang.service.UserService;
+import com.chuang.util.GetIP;
 
 
 @Controller
+@SessionAttributes("user")
 @RequestMapping("/user")
 public class UserController {
     
     @Autowired
     private UserService userService;
-    
+    @Autowired
+    private LoginLogService logService;
     /**
      * 用户名检测
      */
@@ -88,31 +94,65 @@ public class UserController {
             return null;
         }
     	User user = new User();
+    
         user.setUsername(username);
         user.setPassword(password);
         user.setPhone(phone);
+        System.out.println(user);
         user.setImgUrl(ImgPath);
         		userService.register(user);
         return "redirect:/";
     }
-  
+  /**
+   * 用户登录
+   * @param username
+   * @param password
+   * @return
+ * @throws IOException 
+   */
     @RequestMapping(value="/login.do",method={RequestMethod.GET,RequestMethod.POST})
     public ModelAndView login(@RequestParam("username") String username,
-                              @RequestParam("password") String password){
+                              @RequestParam("password") String password
+                              ,HttpServletRequest request,
+                              HttpServletResponse response) throws IOException{
         User user = userService.login(username, password);
-        
+        LoginLog log = new LoginLog();
+        String s1 = request.getHeader("User-agent");
+        String s2 = GetIP.getBrowserName(s1);
+        String s4 = request.getRemoteHost();
+        String s5 = GetIP.getOSName(s1, request);
+        if(user!=null){
+        log.setIp(s4);log.setUserId(user.getId());log.setOsName(s5);log.setUserAgent(s2);
+        logService.insertLog(log);
+        }
+//        System.out.println(GetIP.getIpAddress(request));
+//        boolean s3 = GetIP.isMobileDevice(request);
+//        String os = System.getProperty("os.name");
+//        String s4 = request.getRemoteHost();
+//       
+//        System.out.println(s1);
+//        System.out.println(s2);
+//        System.out.println(s3);
+//        System.out.println(s4);
+//        System.out.println(s5);
+//        System.out.println(os);
+//       System.out.println(GetIP.getBrowserName(request.getHeader("User-agent")));
+//       System.out.println(request.getHeader("Host"));
+//       System.out.println(request.getHeader("Referer"));
+       //System.out.println(request.getRemoteAddr()+":"+request.getRemotePort()+"-----"+request.getServletPath());
         ModelAndView modelAndView = new ModelAndView();
         if(user == null){
             modelAndView.addObject("message", "用户不存在或者密码错误！请重新输入");
-            modelAndView.setViewName("pages/loginE");
+            modelAndView.setViewName("pages/loginE.jsp");
         }else{
             modelAndView.addObject("user", user);
-            modelAndView.setViewName("pages/loginS");
+            System.out.println(user);
+            modelAndView.setViewName("pages/loginS.jsp");
         }
         return modelAndView;
     }
     @RequestMapping("/register")
     public String  toregister(){
-    	return "pages/register";
+    	return "pages/register.jsp";
     }
 }

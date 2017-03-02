@@ -61,6 +61,7 @@ public class ImgUpload {
                     // 设置存放图片文件的路径
                     ImgPath="/upload/"+/*System.getProperty("file.separator")+*/trueFileName;
                   // path =  path.replace(" ", "");
+                    System.out.println(realPath);
                     System.out.println("存放图片文件的路径:"+ImgPath);
                     // 转存文件到指定的路径
                     file.transferTo(new File(realPath+ImgPath));
@@ -78,7 +79,7 @@ public class ImgUpload {
             System.out.println("没有找到相对应的文件");
             return null;
         }
-        return "pages/uploadS";
+        return "pages/uploadS.jsp";
 	}
         
         
@@ -107,7 +108,11 @@ public class ImgUpload {
             }  
             System.out.println(path);  
             request.setAttribute("imagesPathList", listImagePath);  
-            return "pages/uploadS";  
+            return "pages/uploadS.jsp";  
         }  
     
+//        @RequestMapping("/toIndex")
+//        public String toIndex(){
+//        	return "photo/index.html";
+//        }
 }
