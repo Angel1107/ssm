@@ -29,7 +29,7 @@ public class TestUpload {
         System.out.println("fileName："+file.getOriginalFilename());
         try {
             //获取输出流
-            OutputStream os=new FileOutputStream("E:/"+new Date().getTime()+file.getOriginalFilename());
+            OutputStream os=new FileOutputStream("E:\\BaiduYunDownload/"+new Date().getTime()+file.getOriginalFilename());
             //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
             InputStream is=file.getInputStream();
             int temp;
@@ -70,7 +70,7 @@ public class TestUpload {
                 MultipartFile file=multiRequest.getFile(iter.next().toString());
                 if(file!=null)
                 {
-                    String path="E:/springUpload"+file.getOriginalFilename();
+                    String path="E:\\BaiduYunDownload\\SpringUpload"+file.getOriginalFilename();
                     //上传
                     file.transferTo(new File(path));
                 }

@@ -155,4 +155,12 @@ public class UserController {
     public String  toregister(){
     	return "pages/register.jsp";
     }
+    @RequestMapping("/logout")
+    public String logout(HttpSession session,HttpServletResponse response){
+        session.getAttribute("user");
+        session.removeValue("user");
+        session.invalidate();
+        return "redirect:/";
+    }
+
 }

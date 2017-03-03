@@ -13,7 +13,7 @@ request.setAttribute("basePath", basePath);
 
 </head>  
 <body>  
-<img src="${basePath}${ImgPath}" width="300" height="200">  
+<img src="${basePath}${ImgPath}" width="300" height="300">
 
 	<c:forEach items="${imagesPathList}" var="image">  
     <img src="${basePath}${image}" width="300" height="200"><br/>  

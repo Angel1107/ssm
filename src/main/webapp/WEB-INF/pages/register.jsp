@@ -44,11 +44,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 margin:0 auto; width:80px; height:60px;
 	}
 	.center{margin:0 auto;}
+    .file input{margin: 0 auto; width:180px;}
 	.avatar-view{width:80px; height:60px;}
 	</style>
   </head>
-  
-  <body style="background-image: url(../css/images/bg.jpg);background-size: cover; ">
+  <body style="background-image: url(../css/images/bg.jpg); background-size: cover; ">
   <form action="<%=basePath%>user/register.do" method="post" align="center" enctype="multipart/form-data"><br><br>
 		<span id="error"></span><br>
     	用户账号: <input type = "text" id="username" name="username" required="required" placeholder="请输入你的用户名"><br><br>
@@ -67,10 +67,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
+      <br>
 <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-<!-- 			<form class="avatar-form" action="{{url('admin/upload-logo')}}" enctype="multipart/form-data" method="post"> -->
+			<%--<form class="avatar-form" action="{{url('admin/upload-logo')}}" enctype="multipart/form-data" method="post">--%>
 				<div class="modal-header">
 					<button class="close" data-dismiss="modal" type="button">&times;</button>
 					<h4 class="modal-title" id="avatar-modal-label">Change User Picture</h4>
@@ -107,14 +108,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</div>
 				</div>
-<!--   		</form> -->
+  		<%--</form>--%>
   	</div>
   </div>
 </div>
 
 <!-- <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div> -->
      
-     <div class="center"><input type="file" name="file"><br><br></div>	
+     <div class="file"><input type="file" name="file" value="选择头像"><br></div>
      <div class="center">
  		<input type="image" src="../css/images/zc.png"  alt="注册" width="105px">
  	 </div>
