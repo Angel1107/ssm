@@ -94,12 +94,11 @@ public class UserController {
             return null;
         }
     	User user = new User();
-    
         user.setUsername(username);
         user.setPassword(password);
         user.setPhone(phone);
-        System.out.println(user);
         user.setImgUrl(ImgPath);
+        System.out.println(user);
         		userService.register(user);
         return "redirect:/";
     }

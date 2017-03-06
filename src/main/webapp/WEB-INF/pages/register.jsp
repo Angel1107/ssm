@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	.avatar-view{width:80px; height:60px;}
 	</style>
   </head>
-  <body style="background-image: url(../css/images/bg.jpg); background-size: cover; ">
+  <body style="background-image: url(bg.jpg); background-size: cover; ">
   <form action="<%=basePath%>user/register.do" method="post" align="center" enctype="multipart/form-data"><br><br>
 		<span id="error"></span><br>
     	用户账号: <input type = "text" id="username" name="username" required="required" placeholder="请输入你的用户名"><br><br>
