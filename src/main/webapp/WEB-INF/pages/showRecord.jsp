@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	<style type="text/css">
 		td{	width:100px}
-		table,table td{border:1px solid red;}
+		table,table td{border:1px solid #b9ffda;}
 	</style>
  
   </head>
