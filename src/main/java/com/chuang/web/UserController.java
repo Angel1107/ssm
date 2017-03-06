@@ -2,7 +2,7 @@ package com.chuang.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.StringTokenizer;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,23 +47,15 @@ public class UserController {
     	}
     	return message;
     }
-    
     /**
-     * 用户注册
-     * @param username
-     * @param password
-     * @return
-     * @throws IOException 
-     * @throws IllegalStateException 
+     * 头像上传
      */
-    @RequestMapping(value="/register.do",method={RequestMethod.POST})
-    public String register(@RequestParam("username") String username,
-    		@RequestParam("password") String password,@RequestParam("phone") String phone,
-    		MultipartFile file,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IllegalStateException, IOException{
+    @RequestMapping(value="/upimg",method={RequestMethod.POST})
+    public String upImg(MultipartFile file,HttpServletRequest request, HttpServletResponse response,HttpSession session){
     	String ImgPath=null;// 文件路径
     	if (file!=null) {// 判断上传的文件是否为空
             String type=null;// 文件类型
-            String fileName=file.getOriginalFilename();// 文件原名称
+            String fileName=((MultipartFile) file).getOriginalFilename();// 文件原名称
             System.out.println("上传的文件原名称:"+fileName);
             // 判断文件类型
             type=fileName.indexOf(".")!=-1?fileName.substring(fileName.lastIndexOf(".")+1, fileName.length()):null;
@@ -78,8 +70,20 @@ public class UserController {
                   // path =  path.replace(" ", "");
                     System.out.println("存放图片文件的路径:"+ImgPath);
                     // 转存文件到指定的路径
-                    file.transferTo(new File(realPath+ImgPath));
-                    request.setAttribute("ImgPath", ImgPath);
+                     try {
+						file.transferTo(new File(realPath+ImgPath));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+                     PrintWriter out;
+					try {
+						out = response.getWriter();
+						out.println(ImgPath);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                   // request.setAttribute("ImgPath", ImgPath);
                     System.out.println("文件成功上传到指定目录下"+realPath);
                 }else {
                     System.out.println("不是我们想要的文件类型,请按要求重新上传");
@@ -93,14 +97,29 @@ public class UserController {
             System.out.println("没有找到相对应的文件");
             return null;
         }
-    	User user = new User();
+    	return null;
+    }
+    /**
+     * 用户注册
+     * @param username
+     * @param password
+     * @return
+     * @throws IOException 
+     * @throws IllegalStateException 
+     */
+    @RequestMapping(value="/register.do",method={RequestMethod.POST})
+    public String register(@RequestParam("username") String username,
+    		@RequestParam("password") String password,@RequestParam("phone") String phone,@RequestParam("file") String ImgPath) {
     
+    	User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setPhone(phone);
-        System.out.println(user);
+//        System.out.println(user);
+        ImgPath = ImgPath.substring(26);
+        System.out.println(ImgPath);
         user.setImgUrl(ImgPath);
-        		userService.register(user);
+        userService.register(user);
         return "redirect:/";
     }
   /**

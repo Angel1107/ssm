@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body style="background-image: url(<%=basePath %>css/images/bg.jpg);background-size: cover;">
 	<a href="http://i.baidu.com/center" >	
 	<img id = "img1" alt="tt去哪儿了"
-				 src="<c:if test='${not empty user.imgUrl}'><%=basePath %>${user.imgUrl}</c:if><c:if test='${empty user.imgUrl}'><%=basePath %>upload/148833341950401.gif</c:if>"/></a>
+				 src="<c:if test='${not empty user.imgUrl}'><%=basePath %>${user.imgUrl}</c:if><c:if test='${empty user.imgUrl}'><%=basePath %>upload/test.jpg</c:if>"/></a>
     <span id="sp"><a href="https://github.com/ManChuang" >${user.username}个人中心</a></span>
    		<div id="first" align="center">
   		<a href="record/selectR.do/${user.id}">查看我预定的会议室</a><br/><br/><br/>
