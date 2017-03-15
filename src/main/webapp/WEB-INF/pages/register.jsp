@@ -37,6 +37,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		});
 		});
+		$("#btn").click(function(){
+			//$("#w3s").attr("href")
+			if($("#pass").attr("type")=="password")
+				$("#pass").attr({type:"text"});
+			else
+				$("#pass").attr({type:"password"});
+		});
 })
 	</script>
 	<style type="text/css">
@@ -79,8 +86,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <li><span>用户账号:</span> <input type = "text" id="username" name="username" required="required" placeholder="请输入你的用户名"><br/><br/></li>
 		  <li>
 			  <span>用户密码:</span>
-			  <p><input class="ipt" type = "text" name="password" required="required" placeholder="请输入你的密码">
-				  <img src="eye.png" ><br/><br/>
+			  <p><input class="ipt" type = "text" id="pass" name="password" required="required" placeholder="请输入你的密码">
+				  <img src="eye.png" id="btn"><br/><br/>
 			  </p>
 		  </li>
 		  <li>
