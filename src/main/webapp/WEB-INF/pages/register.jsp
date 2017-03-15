@@ -41,21 +41,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
 	<style type="text/css">
 	#img{
-		 margin:0 auto; width:80px; height:60px;
+		 margin:0 auto; width:120px; height:60px;
 	}
-	.center{margin:0 auto;}
-    .file input{margin: 0 auto; width:180px;}
+	.center{width:120px; float: left;margin-left: 43%}
+    .file input{margin: 0 auto; width:120px;}
 	.avatar-view{width:80px; height:60px;}
+		.ifn{width: 30%;margin-left: 35%;}
+		.ifn li{overflow:hidden;list-style-type:none; }
+		.ifn li div{position: relative;float: left;}
+		.ifn li input{float: left;margin-left: 2%;width: 45%;}
+		.ifn li span{float: left;}
+		.ifn li p{float: left;margin-left: 2%;position: relative;width: 45%;}
+		.ifn li p .ipt{margin-left: 0%;position: absolute;width: 100%;display: block;}
+		.ifn li p img{position: absolute;right:1%;top: 5px;}
 	</style>
   </head>
   <body style="background-image: url(bg.jpg); background-size: cover; ">
   <form action="<%=basePath%>user/register.do" method="post" align="center" enctype="multipart/form-data"><br><br>
-		<span id="error"></span><br>
-    	用户账号: <input type = "text" id="username" name="username" required="required" placeholder="请输入你的用户名"><br><br>
-    	用户密码: <input type = "text" name="password" required="required" placeholder="请输入你的密码"><br><br>
-    	电话号码: <input name="phone" pattern="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" required="required" type="text" placeholder="请输入11位电话号码"><br><br>
-    	电子邮箱: <input type="email" placeholder="请输入你的的邮箱"><br><br>
-    	上传头像
+		<%--<span id="error"></span><br>--%>
+    	<%--用户账号: <input type = "text" id="username" name="username" required="required" placeholder="请输入你的用户名"><br><br>--%>
+	  <%--<p style="width:100%; height: 24.86px; position:relative;">--%>
+    	<%--<span> 用户密码:</span> <input type = "text" name="password" required="required" placeholder="请输入你的密码"  style="position: absolute;left: 40%"><img src="eye.png" style="position: absolute;left: 10%;top: 2px">--%>
+	   <%--</p><br><br>--%>
+		  <%--电话号码: <input name="phone" pattern="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" required="required" type="text" placeholder="请输入11位电话号码"><br><br>--%>
+    	<%--电子邮箱: <input type="email" placeholder="请输入你的的邮箱"><br><br>--%>
+	  <span id="error"></span>
+	  <%--<div>--%>
+	  <%--用户账号: <input type = "text" id="username" name="username" required="required" placeholder="请输入你的用户名"><br><br>--%>
+	  		<%--<p style="width:100%; height: 24.86px; position:relative;">--%>
+		  <%--<span> 用户密码:</span>--%>
+				<%--<input type = "text" name="password" required="required" placeholder="请输入你的密码"  style="position: absolute;left: 40%"><img src="eye.png" style="position: absolute;left: 10%;top: 2px">--%>
+	  <%--</p><br><br>--%>
+	  <%--电话号码: <input name="phone" pattern="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" required="required" type="text" placeholder="请输入11位电话号码"><br><br>--%>
+	  <%--电子邮箱: <input type="email" placeholder="请输入你的的邮箱"><br><br>--%>
+	  <%--</div>--%>
+	  <ul class="ifn">
+		  <li><span>用户账号:</span> <input type = "text" id="username" name="username" required="required" placeholder="请输入你的用户名"><br/><br/></li>
+		  <li>
+			  <span>用户密码:</span>
+			  <p><input class="ipt" type = "text" name="password" required="required" placeholder="请输入你的密码">
+				  <img src="eye.png" ><br/><br/>
+			  </p>
+		  </li>
+		  <li>
+			  <span>电话号码:</span> <input name="phone" pattern="(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$" required="required" type="text" placeholder="请输入11位电话号码"><br><br>
+		  </li>
+		  <li><span>电子邮箱:</span> <input type="email" placeholder="请输入你的的邮箱"><br><br></li>
+		  <li><span>上传头像:</span> <input type="file" name="file" value="选择头像"></li>
+	   </ul>
+
     	<div id="img">
 		    <div class="ibox-content">
 				<div class="row">
@@ -66,8 +100,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 			</div>
-		</div>
-      <br>
+		</div>	<br>
+	  <%--<div class="file"><input type="file" name="file" value="选择头像"><br></div>--%>
+	  <div class="center">
+		  <input type="image" src="../css/images/zc.png"  alt="注册" width="105px">
+	  </div>
+	  <!--     	<input type = "submit" value="注册"> -->
+
 <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -115,11 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div> -->
      
-     <div class="file"><input type="file" name="file" value="选择头像"><br></div>
-     <div class="center">
- 		<input type="image" src="../css/images/zc.png"  alt="注册" width="105px">
- 	 </div>
-<!--     	<input type = "submit" value="注册"> -->
+
   </form>
   </body>
 </html>
