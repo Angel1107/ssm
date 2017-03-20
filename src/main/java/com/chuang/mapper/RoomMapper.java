@@ -5,7 +5,9 @@ import org.apache.ibatis.annotations.Select;
 
 import com.chuang.model.Room;
 
-public interface RoomMapper {
+import tk.mybatis.mapper.common.Mapper;
+
+public interface RoomMapper extends Mapper<Room>{
 	
 	@Select("select * from room where id = #{id}")
 	public Room selectById(int id);

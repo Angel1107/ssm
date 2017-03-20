@@ -10,7 +10,9 @@ import org.apache.ibatis.annotations.Select;
 
 import com.chuang.model.User;
 
-public interface UserMapper {
+import tk.mybatis.mapper.common.Mapper;
+
+public interface UserMapper extends Mapper<User>{
     
     //@Insert("INSERT INTO userinfo(username, password) VALUES(#{username},#{password})")
     public int insertUser(User user);

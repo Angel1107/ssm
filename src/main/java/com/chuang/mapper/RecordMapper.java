@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.chuang.model.Record;
 
-public interface RecordMapper {
+
+public interface RecordMapper{
 
 	public List<Record> selectByUserId(int id);
 }

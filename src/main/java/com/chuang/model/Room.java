@@ -34,6 +34,13 @@ public class Room {
 
 	}
 
+	
+	public Room(String name, int size) {
+		super();
+		this.name = name;
+		this.size = size;
+	}
+
 	@Override
 	public String toString() {
 		return "Room [id=" + id + ", name=" + name + ", size=" + size + "]";

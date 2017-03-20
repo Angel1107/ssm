@@ -6,12 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByUserId" parameterType="int" resultType="Record">
 		SELECT r.record_id as 'id',
 		u.username as 'user.username',
-		u.password as 'user.password',
+		u.password as
+		'user.password',
 		ro.name as 'room.name',
 		ro.size as 'room.size',
 		r.content,r.createtime
 		FROM record r,room ro,userinfo u
-		where r.user_id = u.id 
-		AND r.room_id= ro.id AND r.user_id  = #{id}
+		where r.user_id
+		= u.id
+		AND r.room_id= ro.id AND r.user_id = #{id}
 	</select>
 </mapper>
